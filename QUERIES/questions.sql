@@ -25,3 +25,20 @@ INSERT INTO customer VALUES
 (4, 'Cathy Cook', '4010 Speedway', 'San Diego', 'CA', '85719', '555-321-7890'),
 (5, 'Alice Johnson', '123 Oak Street', 'San Diego', 'CA', '90001', '555-111-2222'),
 (6, 'Bob Williams', '456 Elm Avenue', 'Chicago', 'IL', '60601', '555-444-7777');
+
+
+--how to show the all the records
+select customer_name from customer
+
+---how can you update the phone no of mary Smith to '82203-12345'
+
+update customer set mobile_no="82204-12345" where customer_name="Mary Smith"
+
+--how can you delete the record where the zip_code is "60601"
+
+delete from customer where ZIP_CODE="90001"
+
+-- how can you select distinct data where the user is from a state="CA"
+
+select * from customer where state='CA'
+
