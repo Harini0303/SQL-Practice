@@ -96,3 +96,35 @@ select count(student_name) from students
 select student_name from students where department="CSE"
 
 select count(student_name) from students where department="CSE"
+
+--GROUP BY AND ORDER BY
+
+select * from students where department="CSE"
+
+
+--desc - highest to lowest 
+
+select student_name,marks from students order by marks desc
+
+--dasc - lowest  to highest
+
+select student_name,marks from students order by marks asc
+
+-- based on one column we are ordering the column according to our wish is - ORDER BY
+
+
+select marks from students
+
+-- if i need the averge marks for the particular department
+
+-- if we are doing operation in a particular  group using aggreegate function
+
+select avg(marks) from students group by department --for each department its giving the average
+
+
+select avg(marks),department from students group by department 
+
+--if i try to print the student name along with the above command
+
+select avg(marks),department,student_name from students group by department  -- error
+
