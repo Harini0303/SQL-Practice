@@ -53,3 +53,46 @@ alter table customer drop column mobile_no
 --how do you truncate a table
 
 truncate table customer
+
+
+--AGGREEGATE FUNCTIONS
+
+create table students(
+student_name varchar(100),
+marks int,
+department varchar(100)
+)
+
+--RECORDS
+insert into student values("Harini",99,"CSE")
+insert into student values("Aakash",98,"CSE")
+insert into student values("Manoj",75,"MECH")
+insert into student values("kunal",80,"ECE")
+insert into student values("raj",70,"EEE")
+
+--sum()
+
+select sum(marks) from students 
+
+select sum(marks) as total_marks from students 
+
+--max()
+
+select max(marks) from students
+
+--min()
+
+select min(marks) from students
+
+
+--avg()
+
+select avg(marks) from students
+
+--count()
+
+select count(student_name) from students
+
+select student_name from students where department="CSE"
+
+select count(student_name) from students where department="CSE"
