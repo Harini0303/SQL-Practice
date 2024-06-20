@@ -42,3 +42,14 @@ delete from customer where ZIP_CODE="90001"
 
 select * from customer where state='CA'
 
+--how do you print customer id who are greater that 5?
+select * from customer where customer_id > 5 LIMIT 0, 1000
+
+
+--how do you delete the mobile_no column 
+
+alter table customer drop column mobile_no
+
+--how do you truncate a table
+
+truncate table customer
