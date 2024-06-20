@@ -1,0 +1,4 @@
+customer_id,customer_name,customer_address,city,state,ZIP_Code
+1,John,"392 sunset blvd.","New York",NT,10059
+2,"Mary Smith","6900 Main street.","San Francisco",CA,94039
+3,Aakash,Nallur.,Tirupur,TamilNadu,641664
