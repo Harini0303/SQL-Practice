@@ -191,3 +191,30 @@ select avg(salary),department from EMPLOYEE group by department order by avg(sal
 
 
 
+--HAVING CLAUSE 
+--eg
+select count(*),department from EMPLOYEE where department="IT"
+
+select count(*),department from EMPLOYEE group by department
+
+select avg(salary),department from EMPLOYEE group by department
+
+--what are the department that salary is less than 60000
+select department,salary from EMPLOYEE where salary < 60000
+
+select department from EMPLOYEE where salary < 60000
+
+select avg(salary),department from EMPLOYEE where avg(salary) < 60000 
+
+-- here i am trying to put condition in the aggreegate function
+
+-- if we need to use conditions in the aggreegate fun menas we need to use HAVING CLAUSE
+
+select avg(salary),department from EMPLOYEE group by department having avg(salary) < 60000
+
+
+-- find the department with an average salary greater than 55,000 or have more than two employees:
+
+
+
+
