@@ -1,61 +1,61 @@
--- How do you make a table in a database?
--- Customer(
---     customer_id,
---     Customer_name,
---     customer_address,
---     city,
---     state,
---     ZIP_Code
--- )
+// How do you make a table in a database?
+// Customer(
+//     customer_id,
+//     Customer_name,
+//     customer_address,
+//     city,
+//     state,
+//     ZIP_Code
+// )
 
--- Inset some values to the customer tables
+// Inset some values to the customer tables
 
--- How can we change the customer_address colum to address
+// How can we change the customer_address colum to address
 
---how do you add a new column called mobile_no
+//how do you add a new column called mobile_no
 
---how do you delete a column where mobile_no is null?
+//how do you delete a column where mobile_no is null?
 
--- adding records into the customer table 
+// adding records into the customer table 
 
 INSERT INTO customer VALUES
-(1, 'John Doe', '392 Sunset Blvd.', 'New York', 'NT', '10059', '555-123-4567'),
-(2, 'Mary Smith', '6900 Main St.', 'San Francisco', 'CA', '94032', '555-987-6543'),
-(3, 'Richard Newman', '2040 Riverside Rd.', 'San Diego', 'CA', '92010', '555-555-5555'),
-(4, 'Cathy Cook', '4010 Speedway', 'San Diego', 'CA', '85719', '555-321-7890'),
-(5, 'Alice Johnson', '123 Oak Street', 'San Diego', 'CA', '90001', '555-111-2222'),
-(6, 'Bob Williams', '456 Elm Avenue', 'Chicago', 'IL', '60601', '555-444-7777');
+(1, 'John Doe', '392 Sunset Blvd.', 'New York', 'NT', '10059', '555/123/4567'),
+(2, 'Mary Smith', '6900 Main St.', 'San Francisco', 'CA', '94032', '555/987/6543'),
+(3, 'Richard Newman', '2040 Riverside Rd.', 'San Diego', 'CA', '92010', '555/555/5555'),
+(4, 'Cathy Cook', '4010 Speedway', 'San Diego', 'CA', '85719', '555/321/7890'),
+(5, 'Alice Johnson', '123 Oak Street', 'San Diego', 'CA', '90001', '555/111/2222'),
+(6, 'Bob Williams', '456 Elm Avenue', 'Chicago', 'IL', '60601', '555/444/7777');
 
 
---how to show the all the records
+//how to show the all the records
 select customer_name from customer
 
----how can you update the phone no of mary Smith to '82203-12345'
+///how can you update the phone no of mary Smith to '82203/12345'
 
-update customer set mobile_no="82204-12345" where customer_name="Mary Smith"
+update customer set mobile_no="82204/12345" where customer_name="Mary Smith"
 
---how can you delete the record where the zip_code is "60601"
+//how can you delete the record where the zip_code is "60601"
 
 delete from customer where ZIP_CODE="90001"
 
--- how can you select distinct data where the user is from a state="CA"
+// how can you select distinct data where the user is from a state="CA"
 
 select * from customer where state='CA'
 
---how do you print customer id who are greater that 5?
+//how do you print customer id who are greater that 5?
 select * from customer where customer_id > 5 LIMIT 0, 1000
 
 
---how do you delete the mobile_no column 
+//how do you delete the mobile_no column 
 
 alter table customer drop column mobile_no
 
---how do you truncate a table
+//how do you truncate a table
 
 truncate table customer
 
 
---AGGREEGATE FUNCTIONS
+//AGGREEGATE FUNCTIONS
 
 create table students(
 student_name varchar(100),
@@ -63,33 +63,33 @@ marks int,
 department varchar(100)
 )
 
---RECORDS
+//RECORDS
 insert into student values("Harini",99,"CSE")
 insert into student values("Aakash",98,"CSE")
 insert into student values("Manoj",75,"MECH")
 insert into student values("kunal",80,"ECE")
 insert into student values("raj",70,"EEE")
 
---sum()
+//sum()
 
 select sum(marks) from students 
 
 select sum(marks) as total_marks from students 
 
---max()
+//max()
 
 select max(marks) from students
 
---min()
+//min()
 
 select min(marks) from students
 
 
---avg()
+//avg()
 
 select avg(marks) from students
 
---count()
+//count()
 
 select count(student_name) from students
 
@@ -97,46 +97,46 @@ select student_name from students where department="CSE"
 
 select count(student_name) from students where department="CSE"
 
---GROUP BY AND ORDER BY
+//GROUP BY AND ORDER BY
 
 select * from students where department="CSE"
 
 
---desc - highest to lowest 
+//desc / highest to lowest 
 
 select student_name,marks from students order by marks desc
 
---dasc - lowest  to highest
+//dasc / lowest  to highest
 
 select student_name,marks from students order by marks asc
 
--- based on one column we are ordering the column according to our wish is - ORDER BY
+// based on one column we are ordering the column according to our wish is / ORDER BY
 
 
 select marks from students
 
--- if i need the averge marks for the particular department
+// if i need the averge marks for the particular department
 
--- if we are doing operation in a particular  group using aggreegate function
+// if we are doing operation in a particular  group using aggreegate function
 
-select avg(marks) from students group by department --for each department its giving the average
+select avg(marks) from students group by department //for each department its giving the average
 
 
 select avg(marks),department from students group by department 
 
---if i try to print the student name along with the above command
+//if i try to print the student name along with the above command
 
-select avg(marks),department,student_name from students group by department  -- error
+select avg(marks),department,student_name from students group by department  // error
 
---how  many students in each department
+//how  many students in each department
 
 select count(student_name),department from students group by department
 
---with above query also we can use the ORDER BY
+//with above query also we can use the ORDER BY
 
 
 
--- again new example 
+// again new example 
 
 CREATE TABLE EMPLOYEE (
     employee_id INT,
@@ -157,63 +157,63 @@ INSERT INTO EMPLOYEE (employee_id, first_name, last_name, department, salary) VA
 
 select * from EMPLOYEE
 
---1. List all the employees in alphabetical order by last name 
+//1. List all the employees in alphabetical order by last name 
 
 select * from EMPLOYEE order by first_name asc
 
--- list all the employee in the IT department and sort them by salary in descending order
+// list all the employee in the IT department and sort them by salary in descending order
 
 select * from EMPLOYEE where department="IT" order by salary desc
 
--- output will be 6
+// output will be 6
 
 select count(*) from EMPLOYEE
 
--- find the total number of employee in each department 
+// find the total number of employee in each department 
 
 select count(employee_id) from EMPLOYEE group by department
 
--- if i need for the particular department
+// if i need for the particular department
 
 select count(*) from EMPLOYEE where department="IT"
 
---calculate the average salary for each department , sorted in ascending order by department name :
+//calculate the average salary for each department , sorted in ascending order by department name :
 
 select avg(salary),department from EMPLOYEE group by department order by department asc
 
---finf the department with the highest average salary
+//finf the department with the highest average salary
 
-select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc  -- it will give first IT , FINANCE THEN HR
+select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc  // it will give first IT , FINANCE THEN HR
 
 
--- we need to use LIMIT 
+// we need to use LIMIT 
 select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc LIMIT 1
 
 
 
---HAVING CLAUSE 
---eg
+//HAVING CLAUSE 
+//eg
 select count(*),department from EMPLOYEE where department="IT"
 
 select count(*),department from EMPLOYEE group by department
 
 select avg(salary),department from EMPLOYEE group by department
 
---what are the department that salary is less than 60000
+//what are the department that salary is less than 60000
 select department,salary from EMPLOYEE where salary < 60000
 
 select department from EMPLOYEE where salary < 60000
 
 select avg(salary),department from EMPLOYEE where avg(salary) < 60000 
 
--- here i am trying to put condition in the aggreegate function
+// here i am trying to put condition in the aggreegate function
 
--- if we need to use conditions in the aggreegate fun menas we need to use HAVING CLAUSE
+// if we need to use conditions in the aggreegate fun menas we need to use HAVING CLAUSE
 
 select avg(salary),department from EMPLOYEE group by department having avg(salary) < 60000
 
 
--- find the department with an average salary greater than 55,000 or have more than two employees:
+// find the department with an average salary greater than 55,000 or have more than two employees:
 
 SELECT department
 FROM EMPLOYEE
