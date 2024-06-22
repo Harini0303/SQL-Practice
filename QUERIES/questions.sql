@@ -128,3 +128,66 @@ select avg(marks),department from students group by department
 
 select avg(marks),department,student_name from students group by department  -- error
 
+--how  many students in each department
+
+select count(student_name),department from students group by department
+
+--with above query also we can use the ORDER BY
+
+
+
+-- again new example 
+
+CREATE TABLE EMPLOYEE (
+    employee_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO EMPLOYEE (employee_id, first_name, last_name, department, salary) VALUES
+(1, 'JOHN', 'DOE', 'HR', 55000),
+(2, 'JANE', 'SMITH', 'IT', 60000),
+(3, 'BOB', 'JOHNSON', 'IT', 62000),
+(4, 'ALICE', 'WILLIAMS', 'HR', 54000),
+(5, 'EVA', 'DAVIS', 'FINANCE', 58000),
+(6, 'MIKE', 'BROWN', 'FINANCE', 59000);
+
+
+select * from EMPLOYEE
+
+--1. List all the employees in alphabetical order by last name 
+
+select * from EMPLOYEE order by first_name asc
+
+-- list all the employee in the IT department and sort them by salary in descending order
+
+select * from EMPLOYEE where department="IT" order by salary desc
+
+-- output will be 6
+
+select count(*) from EMPLOYEE
+
+-- find the total number of employee in each department 
+
+select count(employee_id) from EMPLOYEE group by department
+
+-- if i need for the particular department
+
+select count(*) from EMPLOYEE where department="IT"
+
+--calculate the average salary for each department , sorted in ascending order by department name :
+
+select avg(salary),department from EMPLOYEE group by department order by department asc
+
+--finf the department with the highest average salary
+
+select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc  -- it will give first IT , FINANCE THEN HR
+
+
+-- we need to use LIMIT 
+select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc LIMIT 1
+
+
+
