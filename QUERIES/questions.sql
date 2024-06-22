@@ -215,6 +215,10 @@ select avg(salary),department from EMPLOYEE group by department having avg(salar
 
 -- find the department with an average salary greater than 55,000 or have more than two employees:
 
+SELECT department
+FROM EMPLOYEE
+GROUP BY department
+HAVING AVG(salary) > 55000 OR COUNT(employee_id) > 2;
 
 
 
