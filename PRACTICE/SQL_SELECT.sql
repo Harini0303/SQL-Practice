@@ -303,10 +303,12 @@ FROM STAFF STF
 LEFT JOIN STAFF_SALARY SS ON SS.STAFF_ID = STF.STAFF_ID
 ORDER BY 1;
 
+
 SELECT DISTINCT CONCAT(STF.FIRST_NAME, ' ', STF.LAST_NAME) AS FULL_NAME, SS.SALARY
 FROM STAFF STF
 LEFT JOIN STAFF_SALARY SS ON SS.STAFF_ID = STF.STAFF_ID
 ORDER BY 2;
+
 
 -- 24 records – 24 records in right table.
 -- All records from RIGHT table will be fetched irrespective of whether there is a matching record in the LEFT table.
