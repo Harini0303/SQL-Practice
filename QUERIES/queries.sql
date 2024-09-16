@@ -1,33 +1,27 @@
-// 1.create a table name "Students" with columns for ID (INT) , NAME (VARCHAR) , AGE (INT)
-
+-- 1. Create a table named "Students" with columns for ID (INT), NAME (VARCHAR), and AGE (INT)
 CREATE TABLE Students(
     ID  int,
     Name varchar(100),
     Age int
-)
+);
 
-// 2.add a new column "garde" varchar to the "student " table
+-- 2. Add a new column "grade" (VARCHAR) to the "Students" table
+ALTER TABLE Students ADD COLUMN Grade varchar(100);
 
-alter table Students add column Grade varchar(100)
+-- or
+ALTER TABLE Students ADD Grade varchar(100);
 
-//or
+-- 3. Rename the "Grade" column to "FinalGrade"
+ALTER TABLE Students CHANGE Grade FinalGrade varchar(100);
 
-alter table Students add Grade varchar(100)
+-- or
+ALTER TABLE Students RENAME COLUMN Grade TO FinalGrade;
 
-//3.rename the grade column to final grade
-
-alter table students change Grade FinalGrade varchar(100)
-
-//or
-
-alter table Students rename column grade to FinalGrade
-
-//4. insert 10 new students as dummy records
-
-INSERT into Students VALUES
-(101,"John Doe",20,'A'),
-(102,"Jane Smith",22,'B'),
-(103,"Bob Johnson",19,'C'),
+-- 4. Insert 10 new students as dummy records
+INSERT INTO Students VALUES
+(101, 'John Doe', 20, 'A'),
+(102, 'Jane Smith', 22, 'B'),
+(103, 'Bob Johnson', 19, 'C'),
 (104, 'Allice Brown', 21, 'A'),
 (105, 'Charlie Davis', 20, 'B'),
 (106, 'Emma Wilson', 23, 'A'),
@@ -36,126 +30,92 @@ INSERT into Students VALUES
 (109, 'William Turner', 21, 'A'),
 (110, 'Sophia Rodriguez', 22, 'C');
 
+-- 5. Update the age of the student with ID 101 to 21
+UPDATE Students SET Age = 21 WHERE ID = 101;
 
-//5. update the age of student with ID 101 to 21.
+-- 6. Delete the student with ID 101 from the Students table
+DELETE FROM Students WHERE ID = 101;
 
-update students set age=21 where ID=101
+-- 7. Retrieve all the students aged 19 or older
+SELECT * FROM Students WHERE Age >= 19;
 
-//6.delete the student id 101 from the student table
+-- or
+SELECT Name FROM Students WHERE Age >= 19;
 
-delete from students where ID=101
+-- 8. Retrieve students named 'William Turner' or 'Allice Brown'
+SELECT * FROM Students WHERE Name = 'William Turner' OR Name = 'Allice Brown';
 
-// 7. retrieve all the studens aged 19 or older
+-- or
+SELECT * FROM Students WHERE Name IN ('William Turner', 'Allice Brown');
 
-select * from students where age >= 19
+-- 9. Retrieve students with grade 'A' or 'B' and aged 20 or older
+SELECT * FROM Students WHERE Age >= 20 AND FinalGrade IN ('A', 'B');
 
+-- or
+SELECT * FROM Students WHERE (FinalGrade = 'A' OR FinalGrade = 'B') AND Age >= 20;
 
-// or 
+-- 10. Retrieve students aged between 18 and 25
+SELECT * FROM Students WHERE Age BETWEEN 18 AND 25;
 
-select Name from students where age >= 19
+-- 11. Retrieve students with ages less than 18
+SELECT * FROM Students WHERE Age < 18;
 
+-- 12. Retrieve students with grade greater than 'C'
+SELECT * FROM Students WHERE FinalGrade > 'C';
 
-//8. retrive students name 'william turner' or 'allice brown'
+-- 13. Count the total number of students
+SELECT COUNT(*) FROM Students;
 
-select * from students where Name="William Turner" OR Name="Allice Brown"
+-- 14. Calculate the average age of students
+SELECT AVG(Age) FROM Students;
 
-//or
-select * from students where Name in ("William Turner","Allice Brown")
+-- 15. Find the sum of ages for students with grades 'A' or 'B'
+SELECT SUM(Age), FinalGrade FROM Students GROUP BY FinalGrade ORDER BY FinalGrade LIMIT 2;
 
-//9.retrive students with grade 'A' or 'B' and aged 20 or older
+-- or
+SELECT AVG(Age) FROM Students WHERE FinalGrade = 'A' OR FinalGrade = 'B';
 
-select * from students where age >=20 AND FinalGrade in('A','B')
+-- or
+SELECT SUM(Age) FROM Students WHERE FinalGrade = 'A' OR FinalGrade = 'B';
 
-//or
+-- 16. Group students by grade and count the number of students in each grade
+SELECT COUNT(*), FinalGrade FROM Students GROUP BY FinalGrade;
 
-select * from students where FinalGrade='A' or FinalGrade='B' and age>=20
+-- or
+SELECT COUNT(*), FinalGrade FROM Students GROUP BY FinalGrade ORDER BY FinalGrade ASC;
 
-//10. retrive students aged between 18 and 25
+-- 17. Group students by age and calculate the average in each group
+SELECT AVG(Age), Age FROM Students GROUP BY Age;
 
-select * from students where age between 18 and 20
+-- or
+SELECT AVG(Age) FROM Students GROUP BY FinalGrade;
 
-//11. retrive students with ages less tahn 18
+-- or
+SELECT AVG(Age), FinalGrade FROM Students GROUP BY FinalGrade;
 
-select * from students where age < 18
+-- 18. Find the grade with the highest number of students
+SELECT COUNT(*), FinalGrade FROM Students GROUP BY FinalGrade ORDER BY COUNT(*) DESC LIMIT 1;
 
-//12. retrive students with grade greater tham 'c'
+-- 19. Find grades with an average age > 22
+SELECT AVG(Age), FinalGrade FROM Students GROUP BY FinalGrade HAVING AVG(Age) > 22;
 
-select * from students where FinalGrade > 'C'
+-- 20. Find grades with fewer than 3 students
+SELECT COUNT(*), FinalGrade FROM Students GROUP BY FinalGrade HAVING COUNT(*) < 3;
 
-//13. count the total number of students 
+-- 21. Find grades with an average age between 20 and 25
+SELECT AVG(Age), FinalGrade FROM Students GROUP BY FinalGrade HAVING AVG(Age) BETWEEN 20 AND 25;
 
-select count(*) from students 
+-- 22. List all students in ascending order of age
+SELECT * FROM Students ORDER BY Age ASC;
 
-//14. calculate the average age of students
+-- or
+SELECT Age FROM Students ORDER BY Age ASC;
 
-select avg(age) from students
+-- 23. List students with grade 'A' or 'B' in descending order of age
+SELECT * FROM Students WHERE FinalGrade IN ('A', 'B') ORDER BY Age DESC;
 
-//15. find the sum of ages for students with grades 'A' or 'B'
+-- 24. Sort students by grade in alphabetical order
+SELECT * FROM Students ORDER BY FinalGrade ASC;
 
-select sum(age),FinalGrade from students group by FinalGrade order by FinalGrade limit 2
-
-//or 
-
-select avg(age) from students where FinalGrade='A' or FinalGrade='B'
-
-//or 
-select sum(age) from students where FinalGrade='A' or FinalGrade='B'
-
-//16. group students by grade and count the number of students in each grade
-
-select count(*),FinalGrade from students group by FinalGrade
-
-//or
-
-select count(*),FinalGrade from students group by FinalGrade order by FinalGrade asc
-
-//17. group students by age and calculate the average in each group
-
-select avg(age),age from students group by age
-
-//or 
-
-select avg(age) from students group by FinalGrade
-
-//or
-
-select avg(age),FinalGrade from students group by FinalGrade
-
-//18. find the grade with the highest no of students
-
-select count(*),FinalGrade from students group by FinalGrade order by FinalGrade desc limit 1
-
-//19. find grade with an average age > 22
-
-select avg(age),FinalGrade from students group by FinalGrade having avg(age) > 21
-
-//20. find grade with fewer than 3 students
-
-select count(*),FinalGrade from students group by FinalGrade having count(*) > 3
-
-//21. find grades with an average  age between 20 and 25
-
-select avg(age),FinalGrade from Students group by FinalGrade having avg(age) between 20 and 25
-
-//22. list all the students in asc order of age
-
-select age from students order by age
-
-//or
-
-select * from students order by age asc
-
-//23. list students with grade 'A' or 'B' in desc order of age 
-
-
-//24. sort students by grade in alphabetic order
-
-SELECT * FROM Students
-ORDER BY FinalGrade ASC;
-
-//25. delete table
-
-delete table Students
-
-
-
+-- 25. Delete the Students table
+DROP TABLE Students;
