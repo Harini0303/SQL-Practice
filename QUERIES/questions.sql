@@ -1,22 +1,22 @@
-// How do you make a table in a database?
-// Customer(
-//     customer_id,
-//     Customer_name,
-//     customer_address,
-//     city,
-//     state,
-//     ZIP_Code
-// )
+-- How do you make a table in a database?
+-- Customer(
+--     customer_id,
+--     Customer_name,
+--     customer_address,
+--     city,
+--     state,
+--     ZIP_Code
+-- )
 
-// Inset some values to the customer tables
+-- Insert some values into the customer tables
 
-// How can we change the customer_address colum to address
+-- How can we change the customer_address column to address?
 
-//how do you add a new column called mobile_no
+-- How do you add a new column called mobile_no?
 
-//how do you delete a column where mobile_no is null?
+-- How do you delete a column where mobile_no is null?
 
-// adding records into the customer table 
+-- Adding records into the customer table
 
 INSERT INTO customer VALUES
 (1, 'John Doe', '392 Sunset Blvd.', 'New York', 'NT', '10059', '555/123/4567'),
@@ -26,118 +26,90 @@ INSERT INTO customer VALUES
 (5, 'Alice Johnson', '123 Oak Street', 'San Diego', 'CA', '90001', '555/111/2222'),
 (6, 'Bob Williams', '456 Elm Avenue', 'Chicago', 'IL', '60601', '555/444/7777');
 
+-- How to show all the records
+SELECT customer_name FROM customer;
 
-//how to show the all the records
-select customer_name from customer
+-- How can you update the phone no of Mary Smith to '82203/12345'?
+UPDATE customer SET mobile_no = '82204/12345' WHERE customer_name = 'Mary Smith';
 
-///how can you update the phone no of mary Smith to '82203/12345'
+-- How can you delete the record where the ZIP_Code is "60601"?
+DELETE FROM customer WHERE ZIP_CODE = '90001';
 
-update customer set mobile_no="82204/12345" where customer_name="Mary Smith"
+-- How can you select distinct data where the user is from the state 'CA'?
+SELECT * FROM customer WHERE state = 'CA';
 
-//how can you delete the record where the zip_code is "60601"
+-- How do you print customer id who are greater than 5?
+SELECT * FROM customer WHERE customer_id > 5 LIMIT 0, 1000;
 
-delete from customer where ZIP_CODE="90001"
+-- How do you delete the mobile_no column?
+ALTER TABLE customer DROP COLUMN mobile_no;
 
-// how can you select distinct data where the user is from a state="CA"
+-- How do you truncate a table?
+TRUNCATE TABLE customer;
 
-select * from customer where state='CA'
+-- AGGREGATE FUNCTIONS
 
-//how do you print customer id who are greater that 5?
-select * from customer where customer_id > 5 LIMIT 0, 1000
+CREATE TABLE students (
+    student_name VARCHAR(100),
+    marks INT,
+    department VARCHAR(100)
+);
 
+-- RECORDS
+INSERT INTO students VALUES('Harini', 99, 'CSE');
+INSERT INTO students VALUES('Aakash', 98, 'CSE');
+INSERT INTO students VALUES('Manoj', 75, 'MECH');
+INSERT INTO students VALUES('Kunal', 80, 'ECE');
+INSERT INTO students VALUES('Raj', 70, 'EEE');
 
-//how do you delete the mobile_no column 
+-- sum()
+SELECT SUM(marks) FROM students;
 
-alter table customer drop column mobile_no
+SELECT SUM(marks) AS total_marks FROM students;
 
-//how do you truncate a table
+-- max()
+SELECT MAX(marks) FROM students;
 
-truncate table customer
+-- min()
+SELECT MIN(marks) FROM students;
 
+-- avg()
+SELECT AVG(marks) FROM students;
 
-//AGGREEGATE FUNCTIONS
+-- count()
+SELECT COUNT(student_name) FROM students;
 
-create table students(
-student_name varchar(100),
-marks int,
-department varchar(100)
-)
+SELECT student_name FROM students WHERE department = 'CSE';
 
-//RECORDS
-insert into student values("Harini",99,"CSE")
-insert into student values("Aakash",98,"CSE")
-insert into student values("Manoj",75,"MECH")
-insert into student values("kunal",80,"ECE")
-insert into student values("raj",70,"EEE")
+SELECT COUNT(student_name) FROM students WHERE department = 'CSE';
 
-//sum()
+-- GROUP BY AND ORDER BY
+SELECT * FROM students WHERE department = 'CSE';
 
-select sum(marks) from students 
+-- Descending / highest to lowest
+SELECT student_name, marks FROM students ORDER BY marks DESC;
 
-select sum(marks) as total_marks from students 
+-- Ascending / lowest to highest
+SELECT student_name, marks FROM students ORDER BY marks ASC;
 
-//max()
+-- Based on one column we are ordering the column according to our wish / ORDER BY
+SELECT marks FROM students;
 
-select max(marks) from students
+-- If I need the average marks for a particular department
+SELECT AVG(marks) FROM students GROUP BY department;
 
-//min()
+-- For each department, it's giving the average
+SELECT AVG(marks), department FROM students GROUP BY department;
 
-select min(marks) from students
+-- If I try to print the student name along with the above command
+-- SELECT AVG(marks), department, student_name FROM students GROUP BY department; -- error
 
+-- How many students in each department
+SELECT COUNT(student_name), department FROM students GROUP BY department;
 
-//avg()
+-- With above query, we can also use ORDER BY
 
-select avg(marks) from students
-
-//count()
-
-select count(student_name) from students
-
-select student_name from students where department="CSE"
-
-select count(student_name) from students where department="CSE"
-
-//GROUP BY AND ORDER BY
-
-select * from students where department="CSE"
-
-
-//desc / highest to lowest 
-
-select student_name,marks from students order by marks desc
-
-//dasc / lowest  to highest
-
-select student_name,marks from students order by marks asc
-
-// based on one column we are ordering the column according to our wish is / ORDER BY
-
-
-select marks from students
-
-// if i need the averge marks for the particular department
-
-// if we are doing operation in a particular  group using aggreegate function
-
-select avg(marks) from students group by department //for each department its giving the average
-
-
-select avg(marks),department from students group by department 
-
-//if i try to print the student name along with the above command
-
-select avg(marks),department,student_name from students group by department  // error
-
-//how  many students in each department
-
-select count(student_name),department from students group by department
-
-//with above query also we can use the ORDER BY
-
-
-
-// again new example 
-
+-- Again, new example
 CREATE TABLE EMPLOYEE (
     employee_id INT,
     first_name VARCHAR(50),
@@ -154,71 +126,38 @@ INSERT INTO EMPLOYEE (employee_id, first_name, last_name, department, salary) VA
 (5, 'EVA', 'DAVIS', 'FINANCE', 58000),
 (6, 'MIKE', 'BROWN', 'FINANCE', 59000);
 
+SELECT * FROM EMPLOYEE;
 
-select * from EMPLOYEE
+-- 1. List all the employees in alphabetical order by last name
+SELECT * FROM EMPLOYEE ORDER BY first_name ASC;
 
-//1. List all the employees in alphabetical order by last name 
+-- List all the employees in the IT department and sort them by salary in descending order
+SELECT * FROM EMPLOYEE WHERE department = 'IT' ORDER BY salary DESC;
 
-select * from EMPLOYEE order by first_name asc
+-- Output will be 6
+SELECT COUNT(*) FROM EMPLOYEE;
 
-// list all the employee in the IT department and sort them by salary in descending order
+-- Find the total number of employees in each department
+SELECT COUNT(employee_id) FROM EMPLOYEE GROUP BY department;
 
-select * from EMPLOYEE where department="IT" order by salary desc
+-- If I need for the particular department
+SELECT COUNT(*) FROM EMPLOYEE WHERE department = 'IT';
 
-// output will be 6
+-- Calculate the average salary for each department, sorted in ascending order by department name
+SELECT AVG(salary), department FROM EMPLOYEE GROUP BY department ORDER BY department ASC;
 
-select count(*) from EMPLOYEE
+-- Find the department with the highest average salary
+SELECT AVG(salary), department FROM EMPLOYEE GROUP BY department ORDER BY AVG(salary) DESC;
 
-// find the total number of employee in each department 
+-- We need to use LIMIT 
+SELECT AVG(salary), department FROM EMPLOYEE GROUP BY department ORDER BY AVG(salary) DESC LIMIT 1;
 
-select count(employee_id) from EMPLOYEE group by department
+-- HAVING CLAUSE
+-- Find the department that has a salary less than 60000
+SELECT department, salary FROM EMPLOYEE WHERE salary < 60000;
 
-// if i need for the particular department
+-- Find the department with an average salary less than 60000
+SELECT AVG(salary), department FROM EMPLOYEE GROUP BY department HAVING AVG(salary) < 60000;
 
-select count(*) from EMPLOYEE where department="IT"
-
-//calculate the average salary for each department , sorted in ascending order by department name :
-
-select avg(salary),department from EMPLOYEE group by department order by department asc
-
-//finf the department with the highest average salary
-
-select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc  // it will give first IT , FINANCE THEN HR
-
-
-// we need to use LIMIT 
-select avg(salary),department from EMPLOYEE group by department order by avg(salary) desc LIMIT 1
-
-
-
-//HAVING CLAUSE 
-//eg
-select count(*),department from EMPLOYEE where department="IT"
-
-select count(*),department from EMPLOYEE group by department
-
-select avg(salary),department from EMPLOYEE group by department
-
-//what are the department that salary is less than 60000
-select department,salary from EMPLOYEE where salary < 60000
-
-select department from EMPLOYEE where salary < 60000
-
-select avg(salary),department from EMPLOYEE where avg(salary) < 60000 
-
-// here i am trying to put condition in the aggreegate function
-
-// if we need to use conditions in the aggreegate fun menas we need to use HAVING CLAUSE
-
-select avg(salary),department from EMPLOYEE group by department having avg(salary) < 60000
-
-
-// find the department with an average salary greater than 55,000 or have more than two employees:
-
-SELECT department
-FROM EMPLOYEE
-GROUP BY department
-HAVING AVG(salary) > 55000 OR COUNT(employee_id) > 2;
-
-
-
+-- Find the department with an average salary greater than 55000 or more than two employees
+SELECT department FROM EMPLOYEE GROUP BY department HAVING AVG(salary) > 55000 OR COUNT(employee_id) > 2;
